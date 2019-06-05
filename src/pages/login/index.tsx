@@ -11,7 +11,17 @@ type P = {
   addText: any;
 };
 
-class Login extends React.Component<P, any> {
+type S = {
+  username: any;
+  password: any;
+};
+
+class Login extends React.Component<P, S> {
+  state: S = {
+    username: null,
+    password: null
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -21,14 +31,22 @@ class Login extends React.Component<P, any> {
     });
   };
 
+  handleUserName = e => {
+    console.log(e.target.value);
+    this.state.username = e.target.value;
+  };
+
+  handlePassword = e => {
+    this.state.password = e.target.value;
+  };
+
   render() {
     const { loginStatus } = this.props;
-    // const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     return (
       <div className="Login--Wrapper">
         <h1>RT - 亦蓁家管理系统</h1>
-        <Button type="primary" onClick={() =>  this.props.login('123', '456')}>测试</Button>
-        {/* <Form onSubmit={this.handleSubmit} className="login-form">
+        <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
             {getFieldDecorator("username", {
               rules: [
@@ -36,6 +54,7 @@ class Login extends React.Component<P, any> {
               ]
             })(
               <Input
+                onChange={this.handleUserName}
                 prefix={
                   <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
@@ -50,6 +69,7 @@ class Login extends React.Component<P, any> {
               ]
             })(
               <Input
+                onChange={this.handlePassword}
                 prefix={
                   <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                 }
@@ -62,11 +82,11 @@ class Login extends React.Component<P, any> {
             type="primary"
             className="login-form-button"
             // onClick={this.handleSubmit}
-            onClick={this.props.login(2, 1)}
+            onClick={() => this.props.login(this.state.username, this.state.password)}
           >
             登录
           </Button>
-        </Form> */}
+        </Form>
       </div>
     );
   }
@@ -77,27 +97,22 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  // login(account, pwd) {
-  //   // dispatch(actionCreators.login(account, pwd));
-  //   console.log(dispatch(actionCreators))
-  //   console.log(account, pwd)
-  // }
   addText(text: string) {
-    console.log(text)
-    dispatch(actionCreators.add(text))
+    console.log(text);
+    dispatch(actionCreators.add(text));
   },
   login(account, pwd) {
-    console.log(account, pwd)
-    dispatch(actionCreators.login(account, pwd))
+    console.log(account, pwd);
+    dispatch(actionCreators.login(account, pwd));
   }
 });
-
-// export default connect(
-//   mapState,
-//   mapDispatch
-// )(Form.create({ name: "normal_login" })(Login));
 
 export default connect(
   mapState,
   mapDispatch
-)(Login)
+)(Form.create({ name: "normal_login" })(Login));
+
+// export default connect(
+//   mapState,
+//   mapDispatch
+// )(Login)
