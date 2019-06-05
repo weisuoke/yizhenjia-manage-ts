@@ -1,0 +1,21 @@
+.Login--Wrapper {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  border: 1px solid #8f8f8f;
+  box-shadow: 2px 2px 5px #8f8f8f;
+  box-sizing: border-box;
+  padding: 20px;
+
+  & h1 {
+    text-align: center;
+  }
+}
+
+.login-form-button {
+  width: 100%;
+}
