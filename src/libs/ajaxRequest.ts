@@ -8,7 +8,7 @@ class AjaxRequest {
   queue: {};
 
   constructor() {
-    this.baseUrl = process.env.NODE_ENV === 'production' ? '/' : 'http://admin.api-test.yizhenjia.com'
+    this.baseUrl = process.env.NODE_ENV === 'production' ? '/' : '/'
     this.timeout = 3000;
     this.queue = {}
   }

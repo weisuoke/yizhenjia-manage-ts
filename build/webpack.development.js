@@ -30,6 +30,11 @@ module.exports = {
       errors: true,
       warnings: true
     },
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/': {
+        target: 'http://localhost:3313',
+      }
+    }
   }
 }

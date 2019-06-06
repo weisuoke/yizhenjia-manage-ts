@@ -4,9 +4,8 @@ import ajaxRequest from "../../libs/ajaxRequest";
 
 export default class Home extends React.PureComponent {
   componentDidMount() {
-    console.log("componentDidMount");
     ajaxRequest.request({
-      method: "post",
+      method: "get",
       url: "/shop/query"
     });
   }
