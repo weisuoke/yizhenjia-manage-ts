@@ -81,7 +81,6 @@ class Login extends React.Component<P, S> {
           <Button
             type="primary"
             className="login-form-button"
-            // onClick={this.handleSubmit}
             onClick={() => this.props.login(this.state.username, this.state.password)}
           >
             登录
@@ -111,8 +110,3 @@ export default connect(
   mapState,
   mapDispatch
 )(Form.create({ name: "normal_login" })(Login));
-
-// export default connect(
-//   mapState,
-//   mapDispatch
-// )(Login)
